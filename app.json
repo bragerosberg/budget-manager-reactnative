@@ -1,0 +1,12 @@
+{
+  "name": "budgetManagerNative",
+  "displayName": "budgetManagerNative",
+  "expo": {
+    "name": "budgetManagerNative",
+    "slug": "budgetManagerNative",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
