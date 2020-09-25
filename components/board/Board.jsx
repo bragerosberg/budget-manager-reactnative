@@ -49,12 +49,17 @@ export default function Board() {
   
   return budgetSet ? (
     <View style={{marginTop: 50}}>
-      <Text style={{textAlign: "center" }}>Yearly: {yearlyBudget}</Text>
+      <Text style={{ textAlign: "center" }}>Yearly: {yearlyBudget}</Text>
       <Budget />
+      <Button
+      title="X"
+      buttonStyle={{backgroundColor: "red", width: 50, marginTop: 200 }}
+      onPress={resetBudget}
+      />
     </View>
   ) : (
     <View style={{marginTop: 50}}>
-      <Text style={{marginTop: 10, textAlign: "center", fontSize: 32}}>Budget Manager</Text>
+      <Text style={{marginTop: 10, textAlign: "center", fontSize: 32 }}>Budget Manager</Text>
       <TextInput 
         placeholder="Enter yearly budget here"
         keyboardType = 'number-pad'
