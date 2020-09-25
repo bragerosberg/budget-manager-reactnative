@@ -3,8 +3,7 @@ import { Text, View } from 'react-native';
 import Expense from '../expense/Expense';
 import Form from '../form/Form';
 
-export default function Month() {
-  
+export default function Month(props) {
   return (
     <View>
       <Text>This is the Month component</Text>

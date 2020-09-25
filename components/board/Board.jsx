@@ -50,7 +50,7 @@ export default function Board() {
   return budgetSet ? (
     <View style={{marginTop: 50}}>
       <Text style={{ textAlign: "center" }}>Yearly: {yearlyBudget}</Text>
-      <Budget />
+      <Budget yearlyBudget={yearlyBudget}/>
       <Button
       title="X"
       buttonStyle={{backgroundColor: "red", width: 50, marginTop: 200 }}
