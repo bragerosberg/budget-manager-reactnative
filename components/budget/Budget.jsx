@@ -12,12 +12,12 @@ export default function Budget(props) {
 
   
   return (
-    <View>
-    {year.map((month, index) => (
-      <View key={index}>
-        <Month monthlyBudget={monthlyBudget} month={month}/>    
-      </View>
-    ))}
-    </View>
+    <>
+      <ScrollView>
+        {year.map((month, index) => (
+          <Month key={index} monthlyBudget={monthlyBudget} month={month}/>    
+        ))}
+      </ScrollView>
+    </>
   )
 }

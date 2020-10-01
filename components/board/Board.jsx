@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, AsyncStorage, TextInput } from 'react-native';
+import { Text, View, AsyncStorage, TextInput, ScrollView } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 import Budget from '../budget/Budget';
 
 export default function Board() {
 
-  const [yearlyBudget, updateYearlyBudget] = useState("");
-  const [budgetSet, setBudgetStatus] = useState(false);
+  const [yearlyBudget, updateYearlyBudget] = useState(120000); // set to set value for development, in production the value is ""
+  const [budgetSet, setBudgetStatus] = useState(true); // in product this is falsse 
   let attemptSavedBudget;
   
   _retrieveData = async () => {
@@ -48,17 +48,21 @@ export default function Board() {
   };
   
   return budgetSet ? (
-    <View style={{marginTop: 50}}>
-      <Text style={{ textAlign: "center" }}>Yearly: {yearlyBudget}</Text>
-      <Budget yearlyBudget={yearlyBudget}/>
-      <Button
-      title="X"
-      buttonStyle={{backgroundColor: "red", width: 50, marginTop: 200 }}
-      onPress={resetBudget}
-      />
+    <View>
+      <View>
+        <Text style={{ textAlign: "center" }}>Yearly: {yearlyBudget}</Text>
+      </View>
+      <ScrollView>
+        <Budget yearlyBudget={yearlyBudget}/>
+        <Button
+        title="X"
+        buttonStyle={{backgroundColor: "red", width: 50, marginTop: 200 }}
+        onPress={resetBudget}
+        />
+      </ScrollView>
     </View>
   ) : (
-    <View style={{marginTop: 50}}>
+    <View>
       <Text style={{marginTop: 10, textAlign: "center", fontSize: 32 }}>Budget Manager</Text>
       <TextInput 
         placeholder="Enter yearly budget here"

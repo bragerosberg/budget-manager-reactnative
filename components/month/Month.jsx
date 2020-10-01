@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, AsyncStorage } from 'react-native';
+import { Text, View, AsyncStorage, ScrollView } from 'react-native';
 import { Button } from 'react-native-elements';
 import Expense from '../expense/Expense';
 import Form from '../form/Form';
@@ -61,7 +61,7 @@ export default function Month(props) {
       ))}
 
       <View>
-        <Button title="Edit Toggle" onPress={editToggle}/>
+        <Button buttonStyle={{backgroundColor: "orange"}} title="Edit Toggle" onPress={editToggle}/>
         <Form
           handleSubmitForm={handleSubmitForm}
           amount={amount}
@@ -77,7 +77,7 @@ export default function Month(props) {
     <View>
       <Text>{props.month}/{props.monthlyBudget}</Text>
       <Text>Remaining in {props.month}: {remainingMonth}</Text>
-      <Button title="Edit Toggle" onPress={editToggle}/>
+      <Button buttonStyle={{backgroundColor: "orange"}} title="Edit Toggle" onPress={editToggle}/>
     </View>
   )
  
