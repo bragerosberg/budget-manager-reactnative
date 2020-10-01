@@ -1,57 +1,53 @@
 const { v4: uuidv4 } = require('uuid');
 const year = [
   {
-    key: uuidv4(),
+    key: 1,
     month: 'January'
   },
   {
-    key: uuidv4(),
+    key: 2,
     month: 'February'
   },
   {
-    key: uuidv4(),
+    key: 3,
     month: 'March'
   },
   {
-    key: uuidv4(),
+    key: 4,
     month: 'April'
   },
   {
-    key: uuidv4(),
+    key: 5,
     month: 'May'
   },
   {
-    key: uuidv4(),
+    key: 6,
     month: 'June'
   },
   {
-    key: uuidv4(),
+    key: 7,
     month: 'July'
   },
   {
-    key: uuidv4(),
+    key: 8,
     month: 'August'
   },
   {
-    key: uuidv4(),
+    key: 9,
     month: 'September'
   },
   {
-    key: uuidv4(),
+    key: 10,
     month: 'October'
   },
   {
-    key: uuidv4(),
+    key: 11,
     month: 'November'
   },
   {
-    key: uuidv4(),
+    key: 12,
     month: 'December'
-  },
-  {
-    key: uuidv4(),
-    month: 'Buffer'
-  },
+  }
 ]
 
 export default year; 
