@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, AsyncStorage, TextInput, ScrollView } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 import Budget from '../budget/Budget';
+import GradientButton from 'react-native-gradient-buttons';
 
 export default function Board() {
 
-  const [yearlyBudget, updateYearlyBudget] = useState(120000); // set to set value for development, in production the value is ""
-  const [budgetSet, setBudgetStatus] = useState(true); // in product this is falsse 
+  const [yearlyBudget, updateYearlyBudget] = useState(""); // set to set value for development, in production the value is ""
+  const [budgetSet, setBudgetStatus] = useState(false); // in product this is falsse 
   let attemptSavedBudget;
   
   _retrieveData = async () => {
@@ -62,19 +63,32 @@ export default function Board() {
       </ScrollView>
     </View>
   ) : (
-    <View>
-      <Text style={{marginTop: 10, textAlign: "center", fontSize: 32 }}>Budget Manager</Text>
+    <View style={{backgroundColor: "#ece9e6"}}>
+      <Text style={{marginTop: 20, textAlign: "center", fontSize: 32, color: "black" }}>Budget Manager</Text>
       <TextInput 
         placeholder="Enter yearly budget here"
         keyboardType = 'number-pad'
         onChangeText={updateYearlyBudget}
         inputStyle={{ color: 'black' }}
-        style={{textAlign: "center"}}
+        style={{textAlign: "center",
+        textAlign: "center",
+        backgroundColor: "white",
+        margin: 17,
+        padding: 2,
+        borderColor: "black",
+        borderWidth: 1,
+        }}
       />
-      <Button
-        title="Submit"
-        onPress={handleSubmit}
-        buttonStyle={{backgroundColor: "green"}}
+      <GradientButton
+        text="Submit"
+        style={{ marginBottom: 10 }}
+        textStyle={{ fontSize: 20 }}
+        gradientBegin="#56ab2f"
+        gradientEnd="#a8e063"
+        gradientDirection="linear"
+        radius={10}
+        height={40}
+        onPressAction={handleSubmit}
       />
     </View>
   );
