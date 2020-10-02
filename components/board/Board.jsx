@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, AsyncStorage, TextInput, ScrollView } from 'react-native';
+import { Text, View, AsyncStorage, TextInput, ScrollView, TouchableOpacity } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 import Budget from '../budget/Budget';
 import GradientButton from 'react-native-gradient-buttons';
 
 export default function Board() {
 
-  const [yearlyBudget, updateYearlyBudget] = useState(""); // set to set value for development, in production the value is ""
-  const [budgetSet, setBudgetStatus] = useState(false); // in product this is falsse 
+  const [yearlyBudget, updateYearlyBudget] = useState(120000); // set to set value for development, in production the value is ""
+  const [budgetSet, setBudgetStatus] = useState(true); // in product this is falsse 
   let attemptSavedBudget;
   
   _retrieveData = async () => {
@@ -50,17 +50,27 @@ export default function Board() {
   
   return budgetSet ? (
     <View>
-      <View>
-        <Text style={{ textAlign: "center" }}>Yearly: {yearlyBudget}</Text>
+      <View style={{ marginTop: 25, flex: 1, flexDirection: "row", justifyContent: "space-between" }}>
+        <View>
+          <Text style={{ fontSize: 32 }}>Yearly: {yearlyBudget}</Text>
+        </View>
+        <TouchableOpacity>
+          <GradientButton
+            text="X"
+            style={{ width: 50 }}
+            textStyle={{ fontSize: 20 }}
+            gradientBegin="#ff416c"
+            gradientEnd="#ff416c"
+            gradientDirection="linear"
+            radius={25}
+            height={40}
+            onPressAction={resetBudget}
+          />
+        </TouchableOpacity>
       </View>
-      <ScrollView>
+      {/* <ScrollView style={{marginTop: 20}}>
         <Budget yearlyBudget={yearlyBudget}/>
-        <Button
-        title="X"
-        buttonStyle={{backgroundColor: "red", width: 50, marginTop: 200 }}
-        onPress={resetBudget}
-        />
-      </ScrollView>
+      </ScrollView> */}
     </View>
   ) : (
     <View style={{backgroundColor: "#ece9e6"}}>
