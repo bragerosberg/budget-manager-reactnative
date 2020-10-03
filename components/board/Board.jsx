@@ -50,7 +50,7 @@ export default function Board() {
   
   return budgetSet ? (
     <View>
-      <View style={{ marginTop: 25, flex: 1, flexDirection: "row", justifyContent: "space-between" }}>
+      <View style={{ marginTop: 25, flexDirection: "row", justifyContent: "space-between" }}>
         <View>
           <Text style={{ fontSize: 32 }}>Yearly: {yearlyBudget}</Text>
         </View>
@@ -68,9 +68,11 @@ export default function Board() {
           />
         </TouchableOpacity>
       </View>
-      {/* <ScrollView style={{marginTop: 20}}>
+
+      <ScrollView style={{ marginTop: 20 }}>
         <Budget yearlyBudget={yearlyBudget}/>
-      </ScrollView> */}
+      </ScrollView>
+
     </View>
   ) : (
     <View style={{backgroundColor: "#ece9e6"}}>
