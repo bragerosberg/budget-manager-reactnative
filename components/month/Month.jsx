@@ -3,6 +3,7 @@ import { Text, View, AsyncStorage, ScrollView } from 'react-native';
 import { Button } from 'react-native-elements';
 import Expense from '../expense/Expense';
 import Form from '../form/Form';
+import GradientButton from 'react-native-gradient-buttons';
 const { v4: uuidv4 } = require('uuid');
 
 export default function Month(props) {
@@ -50,8 +51,8 @@ export default function Month(props) {
     }
   }
   return editMonth ? (
-    <View>
-      <Text>{props.month}</Text>
+    <View style={{ backgroundColor: "lightgrey" }}>
+      <Text style={{textAlign: "center"}}>{props.month}</Text>
       <Text>Budget: {props.monthlyBudget}</Text>
       <Text>Remaining: {remainingMonth}</Text>
       <Text>Used: {usedMonth}</Text>
@@ -60,8 +61,19 @@ export default function Month(props) {
         <Expense key={exp.id} deleteExpense={deleteExpense} exp={exp}/>
       ))}
 
-      <View>
-        <Button buttonStyle={{backgroundColor: "orange"}} title="Edit Toggle" onPress={editToggle}/>
+      <View style={{flex: 1 }}>
+        <GradientButton
+          text="Go Back"
+          style={{ flex: 1, margin: 10 }}
+          textStyle={{ fontSize: 16 }}
+          gradientBegin="#76b852"
+          gradientEnd="#8dc26f"
+          gradientDirection="linear"
+          radius={5}
+          height={25}
+          width={135}
+          onPressAction={editToggle}
+        />
         <Form
           handleSubmitForm={handleSubmitForm}
           amount={amount}
@@ -74,10 +86,21 @@ export default function Month(props) {
 
     </View>
   ) : (
-    <View>
-      <Text>{props.month}/{props.monthlyBudget}</Text>
-      <Text>Remaining in {props.month}: {remainingMonth}</Text>
-      <Button buttonStyle={{backgroundColor: "orange"}} title="Edit Toggle" onPress={editToggle}/>
+    <View style={{flex: 1, justifyContent: 'space-evenly', backgroundColor: "lightgrey", alignItems: 'center',  borderBottomColor: 'black', borderBottomWidth: 2 }}>
+      <Text style={{ fontSize: 24 }}>{props.month}</Text>
+      <Text>{usedMonth}/{props.monthlyBudget}</Text>
+      <GradientButton
+        text="Add Expense"
+        style={{ flex: 1, margin: 10 }}
+        textStyle={{ fontSize: 16 }}
+        gradientBegin="#76b852"
+        gradientEnd="#8dc26f"
+        gradientDirection="linear"
+        radius={5}
+        height={25}
+        width={135}
+        onPressAction={editToggle}
+      />
     </View>
   )
  

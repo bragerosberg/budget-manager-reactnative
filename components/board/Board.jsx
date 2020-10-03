@@ -50,7 +50,7 @@ export default function Board() {
   
   return budgetSet ? (
     <View>
-      <View style={{ marginTop: 25, flexDirection: "row", justifyContent: "space-between" }}>
+      <View style={{ marginTop: 25, flexDirection: "row", justifyContent: "space-between", borderBottomColor: 'black', borderBottomWidth: 2  }}>
         <View>
           <Text style={{ fontSize: 32 }}>Yearly: {yearlyBudget}</Text>
         </View>
