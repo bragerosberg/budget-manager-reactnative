@@ -60,7 +60,7 @@ export default function Board() {
             style={{ width: 50 }}
             textStyle={{ fontSize: 20 }}
             gradientBegin="#ff416c"
-            gradientEnd="#ff416c"
+            gradientEnd="#ff4b2b"
             gradientDirection="linear"
             radius={25}
             height={40}

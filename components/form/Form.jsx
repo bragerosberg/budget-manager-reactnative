@@ -5,13 +5,15 @@ import { Input, Button } from 'react-native-elements';
 export default function Form(props) {
   
   return (
-    <View>
+    <View style={{ flex: 1, justifyContent: "center", width: 500 }}>
       <TextInput
+        style={{ backgroundColor: "white", color: "black" }}
         placeholder="Enter the expense"
         onChangeText={props.setName}
         value={props.name}
       />
       <TextInput
+        style={{ backgroundColor: "white", color: "black" }}
         placeholder="Enter the price"
         onChangeText={props.setAmount}
         keyboardType = 'number-pad'

@@ -61,17 +61,14 @@ export default function Month(props) {
         <Expense key={exp.id} deleteExpense={deleteExpense} exp={exp}/>
       ))}
 
-      <View style={{flex: 1 }}>
+      <View style={{flex: 1, flexDirection: "row", borderBottomColor: "black", borderBottomWidth: 2 }}>
         <GradientButton
           text="Go Back"
-          style={{ flex: 1, margin: 10 }}
+          style={{ flex: 1 }}
           textStyle={{ fontSize: 16 }}
           gradientBegin="#76b852"
           gradientEnd="#8dc26f"
           gradientDirection="linear"
-          radius={5}
-          height={25}
-          width={135}
           onPressAction={editToggle}
         />
         <Form
@@ -81,7 +78,15 @@ export default function Month(props) {
           setAmount={setAmount}
           setName={setName}
         />
-        <Button buttonStyle={{backgroundColor: "red"}} title="Clear expenses" onPress={handleClearExpenses}/>
+        <GradientButton
+          text="Delete"
+          style={{ flex: 1 }}
+          textStyle={{ fontSize: 16 }}
+          gradientBegin="#ff416c"
+          gradientEnd="#ff4b2b"
+          gradientDirection="linear"
+          onPressAction={handleClearExpenses}
+        />
       </View>
 
     </View>
