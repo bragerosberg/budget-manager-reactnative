@@ -7,19 +7,20 @@ export default function Form(props) {
   return (
     <View style={{ flex: 1, justifyContent: "center", width: 500 }}>
       <TextInput
+        onSubmitEditing={props.handleSubmitForm}
         style={{ backgroundColor: "white", color: "black" }}
         placeholder="Enter the expense"
         onChangeText={props.setName}
         value={props.name}
       />
-      <TextInput
+      <TextInput 
+        onSubmitEditing={props.handleSubmitForm}
         style={{ backgroundColor: "white", color: "black" }}
         placeholder="Enter the price"
         onChangeText={props.setAmount}
         keyboardType = 'number-pad'
         value={props.amount}
       />
-      <Button title="Submit" onPress={props.handleSubmitForm} buttonStyle={{bacgkroundColor: "green"}}/>
     </View>
   );
 }

@@ -26,6 +26,7 @@ export default function Month(props) {
   }, [props.monthlyBudget, expenses])
 
   const handleClearExpenses = () => setExpenses([]);
+
   const editToggle = () => editMonthState(!editMonth);
 
   const deleteExpense = (e) => {
@@ -53,23 +54,25 @@ export default function Month(props) {
   return editMonth ? (
     <View style={{ backgroundColor: "lightgrey" }}>
       <Text style={{textAlign: "center"}}>{props.month}</Text>
-      <Text>Budget: {props.monthlyBudget}</Text>
-      <Text>Remaining: {remainingMonth}</Text>
-      <Text>Used: {usedMonth}</Text>
+      <View style={{flex: 1, justifyContent: "space-between", flexDirection: "row"}}>
+        <Text style={{ color: "#437b9c" }}>Budget:</Text>
+        <Text>{props.monthlyBudget}</Text>
+        <Text style={{ color: "#437b9c" }}>Remaining:</Text>
+        <Text>{remainingMonth}</Text>
+        <Text style={{ color: "#437b9c" }}>Used:</Text>
+        <Text>{usedMonth}</Text>
+      </View>
 
       {expenses.map(exp => (
         <Expense key={exp.id} deleteExpense={deleteExpense} exp={exp}/>
       ))}
 
       <View style={{flex: 1, flexDirection: "row", borderBottomColor: "black", borderBottomWidth: 2 }}>
-        <GradientButton
-          text="Go Back"
-          style={{ flex: 1 }}
-          textStyle={{ fontSize: 16 }}
-          gradientBegin="#76b852"
-          gradientEnd="#8dc26f"
-          gradientDirection="linear"
-          onPressAction={editToggle}
+        <Button
+          title="<"
+          buttonStyle={{backgroundColor: "green", flex: 1, fontSize: 16, padding: 30, marginRight: 20 }}
+          style={{ flex: 1, fontSize: 16 }}
+          onPress={editToggle}
         />
         <Form
           handleSubmitForm={handleSubmitForm}
@@ -78,14 +81,10 @@ export default function Month(props) {
           setAmount={setAmount}
           setName={setName}
         />
-        <GradientButton
-          text="Delete"
-          style={{ flex: 1 }}
-          textStyle={{ fontSize: 16 }}
-          gradientBegin="#ff416c"
-          gradientEnd="#ff4b2b"
-          gradientDirection="linear"
-          onPressAction={handleClearExpenses}
+        <Button 
+          title="X"
+          buttonStyle={{backgroundColor: "#ff416c", flex: 1, fontSize: 16, padding: 30, marginLeft: 20 }}
+          onPress={handleClearExpenses}
         />
       </View>
 
