@@ -6,8 +6,8 @@ import GradientButton from 'react-native-gradient-buttons';
 
 export default function Board() {
 
-  const [yearlyBudget, updateYearlyBudget] = useState(120000); // set to set value for development, in production the value is ""
-  const [budgetSet, setBudgetStatus] = useState(true); // in product this is falsse 
+  const [yearlyBudget, updateYearlyBudget] = useState(""); 
+  const [budgetSet, setBudgetStatus] = useState(false); 
   let attemptSavedBudget;
   
   _retrieveData = async () => {
@@ -21,9 +21,10 @@ export default function Board() {
     }
   };
   
-  // useEffect(() => {
-  //   if(attemptSavedBudget !== "" || attemptSavedBudget === undefined) setBudgetStatus(false);
-  // }, [attemptSavedBudget ])
+  useEffect(() => {
+    console.log(attemptSavedBudget)
+    if(attemptSavedBudget !== "" || attemptSavedBudget === undefined) setBudgetStatus(false);
+  }, [attemptSavedBudget ])
 
   const handleChange = (e) => {
     const { target } = e;

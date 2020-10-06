@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
   formWrapper: {
     flex: 1,
     justifyContent: "center",
-    height: 50
+    height: 50,
+    borderRadius: 10,
   }
 })
