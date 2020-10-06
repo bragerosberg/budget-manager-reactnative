@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, AsyncStorage, TextInput, ScrollView, TouchableOpacity } from 'react-native';
+import { Text, View, AsyncStorage, TextInput, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 import Budget from '../budget/Budget';
 import GradientButton from 'react-native-gradient-buttons';
@@ -49,58 +49,86 @@ export default function Board() {
   
   return budgetSet ? (
     <View>
-      <View style={{ marginTop: 25, flexDirection: "row", justifyContent: "space-between", borderBottomColor: 'black', borderBottomWidth: 2  }}>
+      <View style={styles.budgetWrapper}>
         <View>
-          <Text style={{ fontSize: 32 }}>Yearly: {yearlyBudget}</Text>
+          <Text style={styles.budgetHeader}>Yearly: {yearlyBudget}</Text>
         </View>
         <TouchableOpacity>
           <GradientButton
             text="X"
-            style={{ width: 50 }}
+            style={styles.budgetDeleteButton}
             textStyle={{ fontSize: 20 }}
             gradientBegin="#ff416c"
             gradientEnd="#ff4b2b"
             gradientDirection="linear"
-            radius={25}
-            height={40}
             onPressAction={resetBudget}
           />
         </TouchableOpacity>
       </View>
 
-      <ScrollView style={{ marginTop: 20 }}>
-        <Budget yearlyBudget={yearlyBudget}/>
+      <ScrollView>
+        <View>
+          <Budget yearlyBudget={yearlyBudget}/>
+        </View>
       </ScrollView>
 
     </View>
   ) : (
     <View style={{backgroundColor: "#ece9e6"}}>
-      <Text style={{marginTop: 20, textAlign: "center", fontSize: 32, color: "black" }}>Budget Manager</Text>
-      <TextInput 
-        placeholder="Enter yearly budget here"
-        keyboardType = 'number-pad'
-        onChangeText={updateYearlyBudget}
-        inputStyle={{ color: 'black' }}
-        style={{textAlign: "center",
-        textAlign: "center",
-        backgroundColor: "white",
-        margin: 17,
-        padding: 2,
-        borderColor: "black",
-        borderWidth: 1,
-        }}
+      <Text style={styles.formHeader}>Budget Manager</Text>
+      <TextInput        
+      placeholder="Enter yearly budget here"
+      keyboardType='number-pad'
+      onChangeText={updateYearlyBudget}
+      inputStyle={{ color: 'black' }}
+      style={styles.formInput}
       />
       <GradientButton
         text="Submit"
-        style={{ marginBottom: 10 }}
+        style={styles.formButton}
         textStyle={{ fontSize: 20 }}
         gradientBegin="#56ab2f"
         gradientEnd="#a8e063"
         gradientDirection="linear"
-        radius={10}
-        height={40}
         onPressAction={handleSubmit}
       />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  budgetWrapper: {
+    marginTop: 25,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    borderBottomColor: 'black',
+    borderBottomWidth: 2
+  },
+  budgetHeader: {
+    fontSize: 32,
+  },
+  formHeader: {
+    marginTop: 20,
+    textAlign: "center",
+    fontSize: 32,
+    color: "black", 
+  },
+  formInput: {
+    textAlign: "center",
+    backgroundColor: "white",
+    margin: 17,
+    padding: 2,
+    borderColor: "black",
+    borderWidth: 1,
+  },
+  formButton: {
+    marginBottom: 10,
+    borderRadius: 10,
+    height: 40,
+  },
+  budgetDeleteButton: {
+    width: 50,
+    borderRadius: 25,
+    height: 40,
+  }
+});
