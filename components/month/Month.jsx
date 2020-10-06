@@ -116,12 +116,14 @@ const styles = StyleSheet.create({
     backgroundColor: "lightgrey"
   },
   monthName:  {
-    textAlign: "center"
+    textAlign: "center",
+    fontSize: 25
   },
   monthExpenses: {
     flex: 1,
     justifyContent: "space-between",
-    flexDirection: "row"
+    flexDirection: "row",
+    margin: 20
   },
   monthExpenseHeader: {
     color: "#437b9c",
