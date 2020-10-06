@@ -31,7 +31,7 @@ export default function Month(props) {
 
   const deleteExpense = (e) => {
     let expenseCopy = expenses;
-    expenseCopy = expenseCopy.filter(exp => exp.id !== e.target.id);
+    expenseCopy = expenseCopy.filter(exp => exp.id !== e);
     setExpenses(expenseCopy);
   }
 
@@ -63,14 +63,16 @@ export default function Month(props) {
         <Text>{usedMonth}</Text>
       </View>
 
-      {expenses.map(exp => (
-        <Expense key={exp.id} deleteExpense={deleteExpense} exp={exp}/>
-      ))}
+      <View style={{marginBottom: 30}}>
+        {expenses.map(exp => (
+          <Expense key={exp.id} deleteExpense={deleteExpense} exp={exp}/>
+        ))}
+      </View>
 
-      <View style={{flex: 1, flexDirection: "row", borderBottomColor: "black", borderBottomWidth: 2 }}>
+      <View style={{flex: 1, flexDirection: "row", borderBottomColor: "black", borderBottomWidth: 2, height: 50 }}>
         <Button
           title="<"
-          buttonStyle={{backgroundColor: "green", flex: 1, fontSize: 16, padding: 30, marginRight: 20 }}
+          buttonStyle={{backgroundColor: "green", flex: 1, fontSize: 16, padding: 10, marginRight: 20 }}
           style={{ flex: 1, fontSize: 16 }}
           onPress={editToggle}
         />
@@ -83,7 +85,7 @@ export default function Month(props) {
         />
         <Button 
           title="X"
-          buttonStyle={{backgroundColor: "#ff416c", flex: 1, fontSize: 16, padding: 30, marginLeft: 20 }}
+          buttonStyle={{backgroundColor: "#ff416c", flex: 1, fontSize: 16, padding: 10, marginLeft: 20 }}
           onPress={handleClearExpenses}
         />
       </View>

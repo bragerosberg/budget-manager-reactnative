@@ -14,8 +14,8 @@ export default function Expense(props) {
       <TouchableOpacity onPress={handleEditClick}>
         <Text style={{margin: 8}}>Edit</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={props.deleteExpense} name={props.exp.name} id={props.exp.id}>
-        <Text style={{margin: 8}}>X</Text>
+      <TouchableOpacity onPress={() => props.deleteExpense(props.exp.id)} name={props.exp.name} id={props.exp.id}>
+        <Text style={{margin: 8, backgroundColor: "red", padding: 10, color: "white"}}>X</Text>
       </TouchableOpacity>
     </View>
   ) : (

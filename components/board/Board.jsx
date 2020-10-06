@@ -28,7 +28,6 @@ export default function Board() {
   const handleChange = (e) => {
     const { target } = e;
     const { value } = target;
-    console.log('I am run');
     updateYearlyBudget(value);
   };
 

@@ -5,7 +5,7 @@ import { Input, Button } from 'react-native-elements';
 export default function Form(props) {
   
   return (
-    <View style={{ flex: 1, justifyContent: "center", width: 500 }}>
+    <View style={{ flex: 1, justifyContent: "center", height: 50 }}>
       <TextInput
         onSubmitEditing={props.handleSubmitForm}
         style={{ backgroundColor: "white", color: "black" }}
