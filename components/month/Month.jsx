@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, AsyncStorage, ScrollView } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 import { Button } from 'react-native-elements';
 import Expense from '../expense/Expense';
 import Form from '../form/Form';
@@ -52,24 +52,24 @@ export default function Month(props) {
     }
   }
   return editMonth ? (
-    <View style={{ backgroundColor: "lightgrey" }}>
-      <Text style={{textAlign: "center"}}>{props.month}</Text>
-      <View style={{flex: 1, justifyContent: "space-between", flexDirection: "row"}}>
-        <Text style={{ color: "#437b9c" }}>Budget:</Text>
+    <View style={styles.monthSection}>
+      <Text style={styles.monthName}>{props.month}</Text>
+      <View style={styles.monthExpenses}>
+        <Text style={styles.monthExpenseHeader}>Budget:</Text>
         <Text>{props.monthlyBudget}</Text>
-        <Text style={{ color: "#437b9c" }}>Remaining:</Text>
+        <Text style={styles.monthExpenseHeader}>Remaining:</Text>
         <Text>{remainingMonth}</Text>
-        <Text style={{ color: "#437b9c" }}>Used:</Text>
+        <Text style={styles.monthExpenseHeader}>Used:</Text>
         <Text>{usedMonth}</Text>
       </View>
 
-      <View style={{marginBottom: 30}}>
+      <View style={styles.monthExpenseTable}>
         {expenses.map(exp => (
           <Expense key={exp.id} deleteExpense={deleteExpense} exp={exp}/>
         ))}
       </View>
 
-      <View style={{flex: 1, flexDirection: "row", borderBottomColor: "black", borderBottomWidth: 2, height: 50 }}>
+      <View style={styles.monthButtons}>
         <Button
           title="<"
           buttonStyle={{backgroundColor: "green", flex: 1, fontSize: 16, padding: 10, marginRight: 20 }}
@@ -92,7 +92,7 @@ export default function Month(props) {
 
     </View>
   ) : (
-    <View style={{flex: 1, justifyContent: 'space-evenly', backgroundColor: "lightgrey", alignItems: 'center',  borderBottomColor: 'black', borderBottomWidth: 2 }}>
+    <View style={styles.monthClosed}>
       <Text style={{ fontSize: 24 }}>{props.month}</Text>
       <Text>{usedMonth}/{props.monthlyBudget}</Text>
       <GradientButton
@@ -109,5 +109,40 @@ export default function Month(props) {
       />
     </View>
   )
- 
 }
+
+const styles = StyleSheet.create({
+  monthSection: {
+    backgroundColor: "lightgrey"
+  },
+  monthName:  {
+    textAlign: "center"
+  },
+  monthExpenses: {
+    flex: 1,
+    justifyContent: "space-between",
+    flexDirection: "row"
+  },
+  monthExpenseHeader: {
+    color: "#437b9c",
+  },
+  monthExpenseTable: {
+    marginBottom: 48
+  },
+  monthButtons: {
+    flex: 1,
+    flexDirection: "row",
+    borderBottomColor: "black",
+    borderBottomWidth: 2,
+    height: 50 
+  },
+  monthClosed: {
+    flex: 1,
+    justifyContent: 'space-evenly',
+    backgroundColor: "lightgrey",
+    alignItems: 'center',
+    borderBottomColor: 'black',
+    borderBottomWidth: 2
+  }
+
+})

@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { Text, View, TextInput } from 'react-native';
-import { Input, Button } from 'react-native-elements';
+import React from 'react';
+import { View, TextInput, StyleSheet } from 'react-native';
 
 export default function Form(props) {
   
   return (
-    <View style={{ flex: 1, justifyContent: "center", height: 50 }}>
+    <View style={styles.formWrapper}>
       <TextInput
         onSubmitEditing={props.handleSubmitForm}
         style={{ backgroundColor: "white", color: "black" }}
@@ -24,3 +23,11 @@ export default function Form(props) {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  formWrapper: {
+    flex: 1,
+    justifyContent: "center",
+    height: 50
+  }
+})
