@@ -8,7 +8,7 @@ export default function Board() {
   const [yearlyBudget, updateYearlyBudget] = useState(""); 
   const [budgetSet, setBudgetStatus] = useState(false);
   
-  const loader = async () => {
+  const attemptStoredBudget = async () => {
     try {
       const value = JSON.parse(await AsyncStorage.getItem('budget'));
       if(value !== null) {
@@ -21,7 +21,7 @@ export default function Board() {
   }
   
   useEffect(() => {
-    loader();
+    attemptStoredBudget();
   }, []);
   
   const resetBudget = () => {
@@ -38,7 +38,6 @@ export default function Board() {
       } catch (e) {
         // saving error
       }
-      // SyncStorage.set('budget', JSON.stringify(yearlyBudget));
       updateYearlyBudget(yearlyBudget);
       setBudgetStatus(budgetSet => ! budgetSet);
     } else {

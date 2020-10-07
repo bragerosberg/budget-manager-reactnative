@@ -4,16 +4,45 @@ import { Button } from 'react-native-elements';
 import Expense from '../expense/Expense';
 import Form from '../form/Form';
 import GradientButton from 'react-native-gradient-buttons';
+import AsyncStorage from '@react-native-community/async-storage';
 const { v4: uuidv4 } = require('uuid');
 
 export default function Month(props) {
   const [remainingMonth, updateMonthlyRemaining] = useState(props.monthlyBudget)
   const [expenses, setExpenses] = useState([]);
   const [usedMonth, setUsedMonth] = useState(0);
-
+  
   const [editMonth, editMonthState] = useState(false);
   const [name, setName] = useState('');
   const [amount, setAmount] = useState('');
+
+  const attemptStoredExpense = async () => {
+    try {
+      const value = JSON.parse(await AsyncStorage.getItem(props.month));
+      if(value !== null) {
+        setExpenses(value);
+      }
+    } catch(e) {
+      // error reading value
+    }
+  }
+
+  useEffect(() => {
+    attemptStoredExpense();
+  }, []);
+
+  const storeExpense = async () => {
+    try {
+      await AsyncStorage.setItem(props.month, JSON.stringify(expenses))
+    } catch (e) {
+      // saving error
+    }
+  }
+
+  useEffect(() => {
+    storeExpense();
+  }, [props.month, expenses])
+
 
   useEffect(() => {
     updateMonthlyRemaining(props.monthlyBudget - usedMonth);
