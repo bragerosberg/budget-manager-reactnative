@@ -2,15 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, AsyncStorage, TextInput, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
 import Budget from '../budget/Budget';
 import GradientButton from 'react-native-gradient-buttons';
+import year from '../budget/year';
 
 export default function Board() {
-  let attemptSavedBudget;
-  const [yearlyBudget, updateYearlyBudget] = useState(attemptSavedBudget); 
+  const [yearlyBudget, updateYearlyBudget] = useState(""); 
   const [budgetSet, setBudgetStatus] = useState(false);
-
-  useEffect(() => {
-    if(attemptSavedBudget !== "" || attemptSavedBudget === undefined) setBudgetStatus(false);
-  }, [attemptSavedBudget ])
 
   const resetBudget = () => {
     handleSubmit();
@@ -20,7 +16,7 @@ export default function Board() {
 
   const handleSubmit = async (e) => {
     if (e) e.preventDefault();
-    if(yearlyBudget !== "") {
+    if(yearlyBudget !== "" && yearlyBudget !== null) {
       await AsyncStorage.setItem('budget', JSON.stringify(yearlyBudget));
       setBudgetStatus(budgetSet => ! budgetSet);
     } else {
@@ -48,7 +44,7 @@ export default function Board() {
       </View>
 
       <ScrollView>
-        <View>
+        <View style={{ paddingBottom: 140 }}>
           <Budget yearlyBudget={yearlyBudget}/>
         </View>
       </ScrollView>
@@ -79,7 +75,7 @@ export default function Board() {
 
 const styles = StyleSheet.create({
   budgetWrapper: {
-    marginTop: 25,
+    paddingTop: 25,
     flexDirection: "row",
     justifyContent: "space-between",
     borderBottomColor: 'black',
@@ -89,7 +85,7 @@ const styles = StyleSheet.create({
     fontSize: 32,
   },
   formHeader: {
-    marginTop: 20,
+    paddingTop: 20,
     textAlign: "center",
     fontSize: 32,
     color: "black", 

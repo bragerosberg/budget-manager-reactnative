@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { render } from 'react-dom';
-import { Text, ScrollView, View } from 'react-native';
+import { View } from 'react-native';
 import Month from '../month/Month';
 import year from './year';
 
@@ -12,12 +11,10 @@ export default function Budget(props) {
 
   
   return (
-    <>
-      <ScrollView>
-        {year.map((month, index) => (
-          <Month key={index} monthlyBudget={monthlyBudget} month={month}/>    
-        ))}
-      </ScrollView>
-    </>
+    <View>
+      {year.map((month, index) => (
+        <Month key={index} monthlyBudget={monthlyBudget} month={month}/>    
+      ))}
+    </View>
   )
 }
