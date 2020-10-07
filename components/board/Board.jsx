@@ -1,36 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, AsyncStorage, TextInput, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
-import { Input, Button } from 'react-native-elements';
 import Budget from '../budget/Budget';
 import GradientButton from 'react-native-gradient-buttons';
 
 export default function Board() {
-
-  const [yearlyBudget, updateYearlyBudget] = useState(""); 
-  const [budgetSet, setBudgetStatus] = useState(false); 
   let attemptSavedBudget;
-  
-  _retrieveData = async () => {
-    try {
-      attemptSavedBudget = await AsyncStorage.getItem('budget');
-      if (attemptSavedBudget !== null) {
-        console.log(attemptSavedBudget);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  
+  const [yearlyBudget, updateYearlyBudget] = useState(attemptSavedBudget); 
+  const [budgetSet, setBudgetStatus] = useState(false);
+
   useEffect(() => {
-    console.log(attemptSavedBudget)
     if(attemptSavedBudget !== "" || attemptSavedBudget === undefined) setBudgetStatus(false);
   }, [attemptSavedBudget ])
-
-  const handleChange = (e) => {
-    const { target } = e;
-    const { value } = target;
-    updateYearlyBudget(value);
-  };
 
   const resetBudget = () => {
     handleSubmit();
@@ -38,10 +18,10 @@ export default function Board() {
     updateYearlyBudget("");
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     if (e) e.preventDefault();
     if(yearlyBudget !== "") {
-      AsyncStorage.setItem('budget');
+      await AsyncStorage.setItem('budget', JSON.stringify(yearlyBudget));
       setBudgetStatus(budgetSet => ! budgetSet);
     } else {
       alert('Invalid budget, please enter a valid number');
