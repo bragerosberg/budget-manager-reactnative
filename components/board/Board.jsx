@@ -2,30 +2,43 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, TextInput, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
 import Budget from '../budget/Budget';
 import GradientButton from 'react-native-gradient-buttons';
-import SyncStorage from 'sync-storage';
-import year from '../budget/year';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export default function Board() {
-  const attemptSavedBudget = SyncStorage.get('budget') ? JSON.parse(SyncStorage.get('budget')) : "";
-  const [yearlyBudget, updateYearlyBudget] = useState(attemptSavedBudget); 
+  const [yearlyBudget, updateYearlyBudget] = useState(""); 
   const [budgetSet, setBudgetStatus] = useState(false);
   
-  console.log(attemptSavedBudget);
+  const loader = async () => {
+    try {
+      const value = JSON.parse(await AsyncStorage.getItem('budget'));
+      if(value !== null) {
+        updateYearlyBudget(value);
+        setBudgetStatus(true);
+      }
+    } catch(e) {
+      // error reading value
+    }
+  }
   
   useEffect(() => {
-    if(attemptSavedBudget !== "") setBudgetStatus(true);
-  }, [attemptSavedBudget]);
+    loader();
+  }, []);
   
   const resetBudget = () => {
     handleSubmit();
-    // SyncStorage.clear();
+    AsyncStorage.clear();
     updateYearlyBudget("");
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     if (e) e.preventDefault();
     if(yearlyBudget !== "") {
-      SyncStorage.set('budget', JSON.stringify(yearlyBudget));
+      try {
+        await AsyncStorage.setItem('budget', JSON.stringify(yearlyBudget))
+      } catch (e) {
+        // saving error
+      }
+      // SyncStorage.set('budget', JSON.stringify(yearlyBudget));
       updateYearlyBudget(yearlyBudget);
       setBudgetStatus(budgetSet => ! budgetSet);
     } else {
