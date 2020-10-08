@@ -23,7 +23,7 @@ export default function Month(props) {
         setExpenses(value);
       }
     } catch(e) {
-      // error reading value
+      console.log(e);
     }
   }
 
@@ -35,7 +35,7 @@ export default function Month(props) {
     try {
       await AsyncStorage.setItem(props.month, JSON.stringify(expenses))
     } catch (e) {
-      // saving error
+      console.log(e);
     }
   }
 

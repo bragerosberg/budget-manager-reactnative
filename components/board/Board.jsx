@@ -16,7 +16,7 @@ export default function Board() {
         setBudgetStatus(true);
       }
     } catch(e) {
-      // error reading value
+      console.log(e);
     }
   }
   
@@ -36,7 +36,7 @@ export default function Board() {
       try {
         await AsyncStorage.setItem('budget', JSON.stringify(yearlyBudget))
       } catch (e) {
-        // saving error
+        console.log(e);
       }
       updateYearlyBudget(yearlyBudget);
       setBudgetStatus(budgetSet => ! budgetSet);
@@ -74,7 +74,8 @@ export default function Board() {
   ) : (
     <View style={{backgroundColor: "#ece9e6", height: "100%"}}>
       <Text style={styles.formHeader}>Budget Manager</Text>
-      <TextInput        
+      <TextInput
+      onSubmitEditing={handleSubmit}      
       placeholder="Enter yearly budget here"
       keyboardType='number-pad'
       onChangeText={updateYearlyBudget}
