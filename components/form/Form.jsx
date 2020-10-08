@@ -7,15 +7,15 @@ export default function Form(props) {
     <View style={styles.formWrapper}>
       <TextInput
         onSubmitEditing={props.handleSubmitForm}
-        style={{ backgroundColor: "white", color: "black" }}
-        placeholder="Enter the expense"
+        style={{ backgroundColor: "white", color: "black", borderRadius: 20, marginBottom: 2, padding: 2 }}
+        placeholder="Enter the expense..."
         onChangeText={props.setName}
         value={props.name}
       />
       <TextInput 
         onSubmitEditing={props.handleSubmitForm}
-        style={{ backgroundColor: "white", color: "black" }}
-        placeholder="Enter the price"
+        style={{ backgroundColor: "white", color: "black", borderRadius: 20, marginBottom: 2, padding: 2 }}
+        placeholder="Enter the price..."
         onChangeText={props.setAmount}
         keyboardType = 'number-pad'
         value={props.amount}
@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     height: 50,
-    borderRadius: 10,
+    paddingBottom: 20,
+    borderRadius: 2,
   }
 })

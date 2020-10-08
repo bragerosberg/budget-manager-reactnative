@@ -100,8 +100,8 @@ export default function Month(props) {
 
       <View style={styles.monthButtons}>
         <Button
-          icon={<Icon name="undo" />}
-          buttonStyle={{backgroundColor: "green", flex: 1, fontSize: 16, padding: 10, marginRight: 20 }}
+          icon={<Icon name="undo" color="black"/>}
+          buttonStyle={{backgroundColor: "lightgray", flex: 1, fontSize: 16, padding: 10, marginRight: 20 }}
           style={{ flex: 1, fontSize: 16 }}
           onPress={editToggle}
         />
@@ -113,8 +113,8 @@ export default function Month(props) {
           setName={setName}
         />
         <Button
-          icon={<Icon name="delete" />}
-          buttonStyle={{backgroundColor: "#ff416c", flex: 1, fontSize: 16, padding: 10, marginLeft: 20 }}
+          icon={<Icon name="delete" color="red"/>}
+          buttonStyle={{backgroundColor: "lightgrey", flex: 1, fontSize: 16, padding: 10, marginLeft: 20 }}
           onPress={handleClearExpenses}
         />
       </View>
