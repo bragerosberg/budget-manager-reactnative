@@ -72,7 +72,7 @@ export default function Board() {
 
     </View>
   ) : (
-    <View style={{backgroundColor: "#ece9e6"}}>
+    <View style={{backgroundColor: "#ece9e6", height: "100%"}}>
       <Text style={styles.formHeader}>Budget Manager</Text>
       <TextInput        
       placeholder="Enter yearly budget here"
@@ -90,6 +90,10 @@ export default function Board() {
         gradientDirection="linear"
         onPressAction={handleSubmit}
       />
+      <View style={styles.footerPlacement}>
+        <Text style={styles.creatorFooter}>Created by Brage Røsberg</Text>
+        <Text style={styles.creatorFooter}>MIT License Copyright (c) 2020 Brage Røsberg</Text>
+      </View>
     </View>
   );
 }
@@ -128,5 +132,17 @@ const styles = StyleSheet.create({
     width: 50,
     borderRadius: 25,
     height: 40,
+  },
+  creatorFooter: {
+    textAlign: "center",
+    color: "#437b9c"
+  },
+  footerPlacement: {
+    width: '100%',
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute', //Here is the trick
+    bottom: 0, //Here is the trick
   }
 });
