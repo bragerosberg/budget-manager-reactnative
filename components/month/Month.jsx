@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Button, Icon } from 'react-native-elements';
 import Expense from '../expense/Expense';
 import Form from '../form/Form';
 import GradientButton from 'react-native-gradient-buttons';
@@ -100,7 +100,7 @@ export default function Month(props) {
 
       <View style={styles.monthButtons}>
         <Button
-          title="<"
+          icon={<Icon name="undo" />}
           buttonStyle={{backgroundColor: "green", flex: 1, fontSize: 16, padding: 10, marginRight: 20 }}
           style={{ flex: 1, fontSize: 16 }}
           onPress={editToggle}
@@ -112,8 +112,8 @@ export default function Month(props) {
           setAmount={setAmount}
           setName={setName}
         />
-        <Button 
-          title="X"
+        <Button
+          icon={<Icon name="delete" />}
           buttonStyle={{backgroundColor: "#ff416c", flex: 1, fontSize: 16, padding: 10, marginLeft: 20 }}
           onPress={handleClearExpenses}
         />
