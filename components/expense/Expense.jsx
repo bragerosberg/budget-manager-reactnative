@@ -13,7 +13,7 @@ export default function Expense(props) {
       <Text style={styles.monthAmount}>{props.exp.amount}</Text>
       <Button
         buttonStyle={{backgroundColor: "lightgray", marginLeft: 20}}
-        icon={<Icon name="edit" color="orange"/>}
+        icon={<Icon name="edit" color="#437b9c"/>}
         onPress={handleEditClick}
       />
       <Button
@@ -27,9 +27,11 @@ export default function Expense(props) {
       <Text style={styles.monthText}>{props.exp.name}</Text>
       <Text style={styles.monthText}> - </Text>
       <Text style={ styles.monthAmount }>${props.exp.amount}</Text>
-      <TouchableOpacity onPress={handleEditClick}>
-        <Text style={styles.monthText}>Edit</Text>
-      </TouchableOpacity>
+      <Button
+        buttonStyle={{backgroundColor: "lightgray", marginLeft: 20}}
+        icon={<Icon name="edit" color="#437b9c"/>}
+        onPress={handleEditClick}
+      />
     </View>
   );
 }
