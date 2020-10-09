@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/phones.png" alt="illustration" width="600" />
+</p>
+
 ## Try it out yourself
 * Clone this repository
 * Make sure the expo-CLI is installed: ```npm install expo-cli --global```
