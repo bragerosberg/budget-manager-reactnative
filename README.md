@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/phones.png" alt="illustration" width="600" />
+  <img src="assets/phoneillustration.png" alt="illustration" width="600" />
 </p>
 
 ## Try it out yourself
