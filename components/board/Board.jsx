@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     height: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    position: 'absolute', //Here is the trick
-    bottom: 0, //Here is the trick
+    position: 'absolute',
+    bottom: 0, 
   }
 });

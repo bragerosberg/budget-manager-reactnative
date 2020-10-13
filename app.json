@@ -1,16 +1,21 @@
 {
-  "name": "budgetManagerNative",
-  "displayName": "budgetManagerNative",
+  "name": "BM",
+  "displayName": "BM",
+  "splash": {
+    "image": "./assets/splash.png",
+    "resizeMode": "contain"
+  },
   "expo": {
-    "name": "budgetManagerNative",
-    "slug": "budgetManagerNative",
+    "name": "BM",
+    "slug": "BM",
+    "icon": "./assets/icon.png",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
     ],
     "android": {
       "package": "com.bragerosberg.bmanager",
-      "versionCode": 6,
+      "versionCode": 9,
       "permissions": []
     }
   }
