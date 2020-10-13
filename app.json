@@ -9,8 +9,9 @@
       "**/*"
     ],
     "android": {
-      "package": "com.bragerosberg.budgetmanager",
-      "versionCode": 2
+      "package": "com.bragerosberg.bmanager",
+      "versionCode": 6,
+      "permissions": []
     }
   }
 }
