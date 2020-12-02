@@ -2,7 +2,7 @@
   <img src="assets/phoneillustration.png" alt="illustration" width="600" />
 </p>
 # Budget Manager - Android
-A convertion of my initial creation of this concept for web availability, developed through React Native with Expo client suited to work for Android.
+A convertion of my initial creation of this concept for [web availability][bmweb], developed through React Native with Expo client suited to work for Android.
 
 ## Test Locally
 * Clone this repository
@@ -32,7 +32,7 @@ This section will be filled out sortly.
 # Full Description
 This section will be filled out sortly.
 
-### Get in touch with me:
+# Contact:
 [<img align="left" style="margin-left: 10px;" alt="codeSTACKr | LinkedIn" width="40px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/linkedin.svg" />][linkedin]
 [<img align="left" style="margin-left: 10px;" alt="codeSTACKr.com" width="40px" src="https://raw.githubusercontent.com/iconic/open-iconic/master/svg/globe.svg" />][website]
 <a href="mailto:bragecontact@gmail.com"><img width="40px" className="homepage__contact" alt="gmail" src="https://i.imgur.com/mo4E0Fb.png"/></a>
@@ -43,3 +43,4 @@ Copyright (c) 2020 Brage Røsberg
 
  [linkedin]: https://www.linkedin.com/in/brage-rosberg/
  [website]: https://www.bragerosberg.com
+ [bmweb]: https://github.com/bragerosberg/budget-manager
