@@ -24,13 +24,13 @@ Have control and organise your economy. Add a yearly budget and fill out expense
 Developed with the Expo client through React Native. AsyncStorage for saving budget and each individual expense is possible through a system from  the React Native Community.  
 
 # Challenges Faced
-This section will be filled out sortly.
+This section will be filled out shortly.
 
 # Design
-This section will be filled out sortly.
+This section will be filled out shortly.
 
 # Full Description
-This section will be filled out sortly.
+This section will be filled out shortly.
 
 # Contact:
 [<img align="left" style="margin-left: 10px;" alt="codeSTACKr | LinkedIn" width="40px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/linkedin.svg" />][linkedin]
