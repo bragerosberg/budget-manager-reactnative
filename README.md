@@ -1,17 +1,36 @@
 <p align="center">
   <img src="assets/phoneillustration.png" alt="illustration" width="600" />
 </p>
+# Budget Manager - Android
+A convertion of my initial creation of this concept for web availability, developed through React Native with Expo client suited to work for Android.
 
-## Try it out yourself
+## Test Locally
 * Clone this repository
 * Make sure the expo-CLI is installed: ```npm install expo-cli --global```
 * ``` npm i "&&" expo start ```
 
-## The App
+# Article 
+- [Contents of App](#contents)
+- [Tech Usage and Reasoning](#tech-usage-and-reasoning)
+- [Challenges Faced](#challenges-faced)
+- [Design](#design)
+- [Full Description](#full-description)
+- [Get in touch!](#contact)
+
+# Contents
 Have control and organise your economy. Add a yearly budget and fill out expenses for each month. Displays how much is disposed per month, used and remaining. All values get stored so the numbers will be just like you expect them to be when you come back. App is uploaded to Google Play and currently undergoing review before launch. 
 
-## Tech
+# Tech
 Developed with the Expo client through React Native. AsyncStorage for saving budget and each individual expense is possible through a system from  the React Native Community.  
+
+# Challenges Faced
+This section will be filled out sortly.
+
+# Design
+This section will be filled out sortly.
+
+# Full Description
+This section will be filled out sortly.
 
 ### Get in touch with me:
 [<img align="left" style="margin-left: 10px;" alt="codeSTACKr | LinkedIn" width="40px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/linkedin.svg" />][linkedin]
