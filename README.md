@@ -39,7 +39,7 @@ This section will be filled out shortly.
 
 ### Creator 
 MIT License
-Copyright (c) 2020 Brage Røsberg
+Copyright (c) 2021 Brage Røsberg
 
  [linkedin]: https://www.linkedin.com/in/brage-rosberg/
  [website]: https://www.bragerosberg.com
