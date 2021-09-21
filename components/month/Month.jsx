@@ -7,10 +7,8 @@ import GradientButton from "react-native-gradient-buttons";
 import AsyncStorage from "@react-native-community/async-storage";
 const { v4: uuidv4 } = require("uuid");
 
-const Month = (props) => {
-  const [remainingMonth, updateMonthlyRemaining] = useState(
-    props.monthlyBudget
-  );
+const Month = ({ monthlyBudget, month }) => {
+  const [remainingMonth, updateMonthlyRemaining] = useState(monthlyBudget);
   const [expenses, setExpenses] = useState([]);
   const [usedMonth, setUsedMonth] = useState(0);
 
@@ -20,7 +18,7 @@ const Month = (props) => {
 
   const attemptStoredExpense = async () => {
     try {
-      const value = JSON.parse(await AsyncStorage.getItem(props.month));
+      const value = JSON.parse(await AsyncStorage.getItem(month));
       if (value !== null) {
         setExpenses(value);
       }
@@ -35,7 +33,7 @@ const Month = (props) => {
 
   const storeExpense = async () => {
     try {
-      await AsyncStorage.setItem(props.month, JSON.stringify(expenses));
+      await AsyncStorage.setItem(month, JSON.stringify(expenses));
     } catch (e) {
       console.log(e);
     }
@@ -43,17 +41,17 @@ const Month = (props) => {
 
   useEffect(() => {
     storeExpense();
-  }, [props.month, expenses]);
+  }, [month, expenses]);
 
   useEffect(() => {
-    updateMonthlyRemaining(props.monthlyBudget - usedMonth);
-  }, [props.monthlyBudget, usedMonth]);
+    updateMonthlyRemaining(monthlyBudget - usedMonth);
+  }, [monthlyBudget, usedMonth]);
 
   useEffect(() => {
     const total = expenses.reduce((acc, cur) => acc + parseInt(cur.amount), 0);
     setUsedMonth(total);
-    updateMonthlyRemaining(props.monthlyBudget - total);
-  }, [props.monthlyBudget, expenses]);
+    updateMonthlyRemaining(monthlyBudget - total);
+  }, [monthlyBudget, expenses]);
 
   const handleClearExpenses = () => setExpenses([]);
 
@@ -83,10 +81,10 @@ const Month = (props) => {
   };
   return editMonth ? (
     <View style={styles.monthSection}>
-      <Text style={styles.monthName}>{props.month}</Text>
+      <Text style={styles.monthName}>{month}</Text>
       <View style={styles.monthExpenses}>
         <Text style={styles.monthExpenseHeader}>Budget:</Text>
-        <Text>{props.monthlyBudget}</Text>
+        <Text>{monthlyBudget}</Text>
         <Text style={styles.monthExpenseHeader}>Remaining:</Text>
         <Text>{remainingMonth}</Text>
         <Text style={styles.monthExpenseHeader}>Used:</Text>
@@ -134,9 +132,9 @@ const Month = (props) => {
     </View>
   ) : (
     <View style={styles.monthClosed}>
-      <Text style={{ fontSize: 24 }}>{props.month}</Text>
+      <Text style={{ fontSize: 24 }}>{month}</Text>
       <Text>
-        {usedMonth}/{props.monthlyBudget}
+        {usedMonth}/{monthlyBudget}
       </Text>
       <GradientButton
         text="Add Expense"

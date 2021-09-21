@@ -3,11 +3,11 @@ import { View } from "react-native";
 import Month from "../month/Month";
 import year from "./year";
 
-const Budget = (props) => {
+const Budget = ({ yearlyBudget }) => {
   const [monthlyBudget, updateMonthlyBudget] = useState(null);
   useEffect(() => {
-    updateMonthlyBudget(Math.floor(props.yearlyBudget / 12));
-  }, [props.yearlyBudget]);
+    updateMonthlyBudget(Math.floor(yearlyBudget / 12));
+  }, [yearlyBudget]);
 
   return (
     <View>

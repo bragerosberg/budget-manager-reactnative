@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { Icon, Button } from "react-native-elements";
 
-const Expense = (props) => {
+const Expense = ({ exp: { name, amount, id } }) => {
   const [toggleRemove, toggleRemoveStatus] = useState(false);
   const handleEditClick = () => toggleRemoveStatus(!toggleRemove);
 
   return toggleRemove ? (
     <View style={styles.monthExpenseEntry}>
-      <Text style={styles.monthText}>{props.exp.name}</Text>
+      <Text style={styles.monthText}>{name}</Text>
       <Text style={styles.monthText}> - </Text>
-      <Text style={styles.monthAmount}>{props.exp.amount}</Text>
+      <Text style={styles.monthAmount}>{amount}</Text>
       <Button
         buttonStyle={{ backgroundColor: "lightgray", marginLeft: 20 }}
         icon={<Icon name="edit" color="#437b9c" />}
@@ -19,16 +19,16 @@ const Expense = (props) => {
       <Button
         icon={<Icon name="cancel" color="red" />}
         buttonStyle={{ backgroundColor: "lightgray", marginLeft: 20 }}
-        onPress={() => props.deleteExpense(props.exp.id)}
-        name={props.exp.name}
-        id={props.exp.id}
+        onPress={() => props.deleteExpense(id)}
+        name={name}
+        id={id}
       />
     </View>
   ) : (
     <View style={styles.monthExpenseEntry}>
-      <Text style={styles.monthText}>{props.exp.name}</Text>
+      <Text style={styles.monthText}>{name}</Text>
       <Text style={styles.monthText}> - </Text>
-      <Text style={styles.monthAmount}>${props.exp.amount}</Text>
+      <Text style={styles.monthAmount}>${amount}</Text>
       <Button
         buttonStyle={{ backgroundColor: "lightgray", marginLeft: 20 }}
         icon={<Icon name="edit" color="#437b9c" />}

@@ -1,11 +1,11 @@
 import React from "react";
 import { View, TextInput, StyleSheet } from "react-native";
 
-const Form = (props) => {
+const Form = ({ handleSubmitForm, setName, setAmount, name, amount }) => {
   return (
     <View style={styles.formWrapper}>
       <TextInput
-        onSubmitEditing={props.handleSubmitForm}
+        onSubmitEditing={handleSubmitForm}
         style={{
           backgroundColor: "white",
           color: "black",
@@ -14,11 +14,11 @@ const Form = (props) => {
           padding: 2,
         }}
         placeholder="Enter the expense..."
-        onChangeText={props.setName}
-        value={props.name}
+        onChangeText={setName}
+        value={name}
       />
       <TextInput
-        onSubmitEditing={props.handleSubmitForm}
+        onSubmitEditing={handleSubmitForm}
         style={{
           backgroundColor: "white",
           color: "black",
@@ -27,9 +27,9 @@ const Form = (props) => {
           padding: 2,
         }}
         placeholder="Enter the price..."
-        onChangeText={props.setAmount}
+        onChangeText={setAmount}
         keyboardType="number-pad"
-        value={props.amount}
+        value={amount}
       />
     </View>
   );
