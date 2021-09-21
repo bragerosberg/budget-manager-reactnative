@@ -1,31 +1,33 @@
-import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
-import { Button, Icon } from 'react-native-elements';
-import Expense from '../expense/Expense';
-import Form from '../form/Form';
-import GradientButton from 'react-native-gradient-buttons';
-import AsyncStorage from '@react-native-community/async-storage';
-const { v4: uuidv4 } = require('uuid');
+import React, { useState, useEffect } from "react";
+import { Text, View, StyleSheet } from "react-native";
+import { Button, Icon } from "react-native-elements";
+import Expense from "../expense/Expense";
+import Form from "../form/Form";
+import GradientButton from "react-native-gradient-buttons";
+import AsyncStorage from "@react-native-community/async-storage";
+const { v4: uuidv4 } = require("uuid");
 
-export default function Month(props) {
-  const [remainingMonth, updateMonthlyRemaining] = useState(props.monthlyBudget)
+const Month = (props) => {
+  const [remainingMonth, updateMonthlyRemaining] = useState(
+    props.monthlyBudget
+  );
   const [expenses, setExpenses] = useState([]);
   const [usedMonth, setUsedMonth] = useState(0);
-  
+
   const [editMonth, editMonthState] = useState(false);
-  const [name, setName] = useState('');
-  const [amount, setAmount] = useState('');
+  const [name, setName] = useState("");
+  const [amount, setAmount] = useState("");
 
   const attemptStoredExpense = async () => {
     try {
       const value = JSON.parse(await AsyncStorage.getItem(props.month));
-      if(value !== null) {
+      if (value !== null) {
         setExpenses(value);
       }
-    } catch(e) {
+    } catch (e) {
       console.log(e);
     }
-  }
+  };
 
   useEffect(() => {
     attemptStoredExpense();
@@ -33,16 +35,15 @@ export default function Month(props) {
 
   const storeExpense = async () => {
     try {
-      await AsyncStorage.setItem(props.month, JSON.stringify(expenses))
+      await AsyncStorage.setItem(props.month, JSON.stringify(expenses));
     } catch (e) {
       console.log(e);
     }
-  }
+  };
 
   useEffect(() => {
     storeExpense();
-  }, [props.month, expenses])
-
+  }, [props.month, expenses]);
 
   useEffect(() => {
     updateMonthlyRemaining(props.monthlyBudget - usedMonth);
@@ -52,7 +53,7 @@ export default function Month(props) {
     const total = expenses.reduce((acc, cur) => acc + parseInt(cur.amount), 0);
     setUsedMonth(total);
     updateMonthlyRemaining(props.monthlyBudget - total);
-  }, [props.monthlyBudget, expenses])
+  }, [props.monthlyBudget, expenses]);
 
   const handleClearExpenses = () => setExpenses([]);
 
@@ -60,26 +61,26 @@ export default function Month(props) {
 
   const deleteExpense = (e) => {
     let expenseCopy = expenses;
-    expenseCopy = expenseCopy.filter(exp => exp.id !== e);
+    expenseCopy = expenseCopy.filter((exp) => exp.id !== e);
     setExpenses(expenseCopy);
-  }
+  };
 
   const addExpense = () => {
     const id = uuidv4();
-    const expense = { name, amount, id }
+    const expense = { name, amount, id };
     setExpenses([...expenses, expense]);
-    setName('');
-    setAmount(''); 
-  }
+    setName("");
+    setAmount("");
+  };
 
   const handleSubmitForm = (e) => {
     if (e) e.preventDefault();
-    if (name !== '' && amount > 0) {
+    if (name !== "" && amount > 0) {
       addExpense();
     } else {
-      console.log('Invalid expense name or amount');
+      console.log("Invalid expense name or amount");
     }
-  }
+  };
   return editMonth ? (
     <View style={styles.monthSection}>
       <Text style={styles.monthName}>{props.month}</Text>
@@ -93,15 +94,21 @@ export default function Month(props) {
       </View>
 
       <View style={styles.monthExpenseTable}>
-        {expenses.map(exp => (
-          <Expense key={exp.id} deleteExpense={deleteExpense} exp={exp}/>
+        {expenses.map((exp) => (
+          <Expense key={exp.id} deleteExpense={deleteExpense} exp={exp} />
         ))}
       </View>
 
       <View style={styles.monthButtons}>
         <Button
-          icon={<Icon name="undo" color="black"/>}
-          buttonStyle={{backgroundColor: "lightgray", flex: 1, fontSize: 16, padding: 10, marginRight: 20 }}
+          icon={<Icon name="undo" color="black" />}
+          buttonStyle={{
+            backgroundColor: "lightgray",
+            flex: 1,
+            fontSize: 16,
+            padding: 10,
+            marginRight: 20,
+          }}
           style={{ flex: 1, fontSize: 16 }}
           onPress={editToggle}
         />
@@ -113,17 +120,24 @@ export default function Month(props) {
           setName={setName}
         />
         <Button
-          icon={<Icon name="delete" color="red"/>}
-          buttonStyle={{backgroundColor: "lightgrey", flex: 1, fontSize: 16, padding: 10, marginLeft: 20 }}
+          icon={<Icon name="delete" color="red" />}
+          buttonStyle={{
+            backgroundColor: "lightgrey",
+            flex: 1,
+            fontSize: 16,
+            padding: 10,
+            marginLeft: 20,
+          }}
           onPress={handleClearExpenses}
         />
       </View>
-
     </View>
   ) : (
     <View style={styles.monthClosed}>
       <Text style={{ fontSize: 24 }}>{props.month}</Text>
-      <Text>{usedMonth}/{props.monthlyBudget}</Text>
+      <Text>
+        {usedMonth}/{props.monthlyBudget}
+      </Text>
       <GradientButton
         text="Add Expense"
         style={{ flex: 1, margin: 10 }}
@@ -137,43 +151,44 @@ export default function Month(props) {
         onPressAction={editToggle}
       />
     </View>
-  )
-}
+  );
+};
+
+export default Month;
 
 const styles = StyleSheet.create({
   monthSection: {
-    backgroundColor: "lightgrey"
+    backgroundColor: "lightgrey",
   },
-  monthName:  {
+  monthName: {
     textAlign: "center",
-    fontSize: 25
+    fontSize: 25,
   },
   monthExpenses: {
     flex: 1,
     justifyContent: "space-between",
     flexDirection: "row",
-    margin: 20
+    margin: 20,
   },
   monthExpenseHeader: {
     color: "#437b9c",
   },
   monthExpenseTable: {
-    marginBottom: 48
+    marginBottom: 48,
   },
   monthButtons: {
     flex: 1,
     flexDirection: "row",
     borderBottomColor: "black",
     borderBottomWidth: 2,
-    height: 50 
+    height: 50,
   },
   monthClosed: {
     flex: 1,
-    justifyContent: 'space-evenly',
+    justifyContent: "space-evenly",
     backgroundColor: "lightgrey",
-    alignItems: 'center',
-    borderBottomColor: 'black',
-    borderBottomWidth: 2
-  }
-
-})
+    alignItems: "center",
+    borderBottomColor: "black",
+    borderBottomWidth: 2,
+  },
+});

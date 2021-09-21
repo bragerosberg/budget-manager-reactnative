@@ -1,50 +1,57 @@
-import React, { useState, useEffect } from 'react';
-import { Text, View, TextInput, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
-import Budget from '../budget/Budget';
-import GradientButton from 'react-native-gradient-buttons';
-import AsyncStorage from '@react-native-community/async-storage';
+import React, { useState, useEffect } from "react";
+import {
+  Text,
+  View,
+  TextInput,
+  ScrollView,
+  TouchableOpacity,
+  StyleSheet,
+} from "react-native";
+import Budget from "../budget/Budget";
+import GradientButton from "react-native-gradient-buttons";
+import AsyncStorage from "@react-native-community/async-storage";
 
-export default function Board() {
-  const [yearlyBudget, updateYearlyBudget] = useState(""); 
+const Board = () => {
+  const [yearlyBudget, updateYearlyBudget] = useState("");
   const [budgetSet, setBudgetStatus] = useState(false);
-  
+
   const attemptStoredBudget = async () => {
     try {
-      const value = JSON.parse(await AsyncStorage.getItem('budget'));
-      if(value !== null) {
+      const value = JSON.parse(await AsyncStorage.getItem("budget"));
+      if (value !== null) {
         updateYearlyBudget(value);
         setBudgetStatus(true);
       }
-    } catch(e) {
+    } catch (e) {
       console.log(e);
     }
-  }
-  
+  };
+
   useEffect(() => {
     attemptStoredBudget();
   }, []);
-  
+
   const resetBudget = () => {
     handleSubmit();
     AsyncStorage.clear();
     updateYearlyBudget("");
-  }
+  };
 
   const handleSubmit = async (e) => {
     if (e) e.preventDefault();
-    if(yearlyBudget !== "") {
+    if (yearlyBudget !== "") {
       try {
-        await AsyncStorage.setItem('budget', JSON.stringify(yearlyBudget))
+        await AsyncStorage.setItem("budget", JSON.stringify(yearlyBudget));
       } catch (e) {
         console.log(e);
       }
       updateYearlyBudget(yearlyBudget);
-      setBudgetStatus(budgetSet => ! budgetSet);
+      setBudgetStatus((budgetSet) => !budgetSet);
     } else {
-      alert('Invalid budget, please enter a valid number');
+      alert("Invalid budget, please enter a valid number");
     }
   };
-  
+
   return budgetSet ? (
     <View>
       <View style={styles.budgetWrapper}>
@@ -66,21 +73,20 @@ export default function Board() {
 
       <ScrollView>
         <View style={{ paddingBottom: 140 }}>
-          <Budget yearlyBudget={yearlyBudget}/>
+          <Budget yearlyBudget={yearlyBudget} />
         </View>
       </ScrollView>
-
     </View>
   ) : (
-    <View style={{backgroundColor: "#ece9e6", height: "100%"}}>
+    <View style={{ backgroundColor: "#ece9e6", height: "100%" }}>
       <Text style={styles.formHeader}>Budget Manager</Text>
       <TextInput
-      onSubmitEditing={handleSubmit}      
-      placeholder="Enter yearly budget here"
-      keyboardType='number-pad'
-      onChangeText={updateYearlyBudget}
-      inputStyle={{ color: 'black' }}
-      style={styles.formInput}
+        onSubmitEditing={handleSubmit}
+        placeholder="Enter yearly budget here"
+        keyboardType="number-pad"
+        onChangeText={updateYearlyBudget}
+        inputStyle={{ color: "black" }}
+        style={styles.formInput}
       />
       <GradientButton
         text="Submit"
@@ -93,19 +99,23 @@ export default function Board() {
       />
       <View style={styles.footerPlacement}>
         <Text style={styles.creatorFooter}>Created by Brage Røsberg</Text>
-        <Text style={styles.creatorFooter}>MIT License Copyright (c) 2020 Brage Røsberg</Text>
+        <Text style={styles.creatorFooter}>
+          MIT License Copyright (c) 2020 Brage Røsberg
+        </Text>
       </View>
     </View>
   );
-}
+};
+
+export default Board;
 
 const styles = StyleSheet.create({
   budgetWrapper: {
     paddingTop: 25,
     flexDirection: "row",
     justifyContent: "space-between",
-    borderBottomColor: 'black',
-    borderBottomWidth: 2
+    borderBottomColor: "black",
+    borderBottomWidth: 2,
   },
   budgetHeader: {
     fontSize: 32,
@@ -114,7 +124,7 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     textAlign: "center",
     fontSize: 32,
-    color: "black", 
+    color: "black",
   },
   formInput: {
     textAlign: "center",
@@ -136,14 +146,14 @@ const styles = StyleSheet.create({
   },
   creatorFooter: {
     textAlign: "center",
-    color: "#437b9c"
+    color: "#437b9c",
   },
   footerPlacement: {
-    width: '100%',
+    width: "100%",
     height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'absolute',
-    bottom: 0, 
-  }
+    justifyContent: "center",
+    alignItems: "center",
+    position: "absolute",
+    bottom: 0,
+  },
 });
